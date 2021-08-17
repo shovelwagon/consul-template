@@ -21,12 +21,12 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Ubuntu Build
-        if: matrix.os == "ubuntu-latest"
+        if: {{ matrix.os == "ubuntu-latest" }}
         run: |
           CGO_ENABLED=0 go build -o consul-template-${{ matrix.os }}
 
       - name: Windows and MacOS Build
-        if: matrix.os != "ubuntu-latest"
+        if: {{ matrix.os != "ubuntu-latest" }}
         run: |
           go build -o consul-template-${{ matrix.os }}
 
