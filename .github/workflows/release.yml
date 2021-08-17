@@ -21,8 +21,8 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Make sure we build on all platforms
-        run: |
-          CGO_ENABLED=0 go build -o consul-template-${{ matrix.os }}
+        run: '[ "${{ matrix.os }}" = "ubuntu-latest" ] && CGO_ENABLED=0 go build -o consul-template-${{ matrix.os }} || go build -o consul-template-${{ matrix.os }}'
+
 
       - name: Release
         uses: softprops/action-gh-release@v1
