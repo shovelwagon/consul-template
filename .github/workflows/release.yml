@@ -22,7 +22,7 @@ jobs:
 
       - name: Make sure we build on all platforms
         run: |
-          go build -o consul-template-${{ matrix.os }}
+          CGO_ENABLED=0 go build -o consul-template-${{ matrix.os }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
